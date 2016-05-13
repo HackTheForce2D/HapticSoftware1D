@@ -7,6 +7,7 @@
 #include<QHostAddress>
 #include<vector>
 #include <cmath>
+#include<QLabel>
 
 const double pi = 3.1415926535897;
 
@@ -27,6 +28,7 @@ public slots:
     void reportConnected();
     void reportDisconnected();
     void ledState(bool state);
+    void changeOffset(int newOffset);
 
 signals:
     void connected();
@@ -34,7 +36,9 @@ signals:
 
 private:
     float angle, torque;
+    int encoderOffset;
     QByteArray data;
+    bool commSet;
     char dataIn[2],dataOut[2],buffer[8000],ledData[2];
     QTcpSocket *device;
     void encodeData();

@@ -56,6 +56,9 @@ void Physics::createBall(b2Vec2 position,float radius, float stiffness,
     ballFixtureDef.shape = &ballNodeShape;
     ballFixtureDef.density = nodeDensity;
     b2DistanceJointDef nodeLinkDef;
+    b2MotorJointDef m;
+    m.angularOffset = 0;
+    m.correctionFactor = 
     //Replace distance Joint by line joint later
     //Need to download the most recent version of box2d
     //b2LineJointDef nodeLinkDef;

@@ -57,3 +57,25 @@ void MainWindow::on_ledStateBox_toggled(bool checked)
 {
     emit ledState(checked);
 }
+
+void MainWindow::on_spinBox_valueChanged(int arg1)
+{
+    emit newOffset(arg1);
+}
+
+void MainWindow::on_actionDisconnect_triggered()
+{
+    emit disconnectDevice();
+}
+
+void MainWindow::deviceConnected()
+{
+    QLabel * deviceState = this->findChild<QLabel*>("deviceState");
+    deviceState->setText("Connected");
+}
+
+void MainWindow::deviceDisconnected()
+{
+    QLabel * deviceState = this->findChild<QLabel*>("deviceState");
+    deviceState->setText("Connected");
+}

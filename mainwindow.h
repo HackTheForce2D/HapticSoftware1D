@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <connectiondialog.h>
 #include <body.h>
+#include <QLabel>
 
 namespace Ui {
 class MainWindow;
@@ -34,6 +35,14 @@ private slots:
 
     void on_ledStateBox_toggled(bool checked);
 
+    void on_spinBox_valueChanged(int arg1);
+
+    void on_actionDisconnect_triggered();
+
+    void deviceConnected();
+
+    void deviceDisconnected();
+
 signals:
     //void displayResized(QSize newSize);
     void findDevice();
@@ -44,6 +53,8 @@ signals:
     void selectedObject(int index);
     void newStiffness(float selected);
     void ledState(bool);
+    void newOffset(int offset);
+    void disconnectDevice();
 
 private:
     Ui::MainWindow *ui;

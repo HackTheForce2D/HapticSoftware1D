@@ -155,6 +155,7 @@ void communicationPC(Parametres p){
 	}
 	
 	sf::TcpSocket client;
+	while(1){
 	if (listener.accept(client) != sf::Socket::Done)
 	{
     error("ERROR on accept");
@@ -181,12 +182,14 @@ void communicationPC(Parametres p){
 		s[1] = (char)(encodedAngle)&255;
 		if(client.send(&s,2) != sf::Socket::Done)
 		{
-			error("ERROR sending data");
+			//error("ERROR sending data");
+			std::cout << "error writing" << std::endl;
 		}//else std::cout << "sent" << std::endl;
 		size_t bytesReceived;
 		if (client.receive(r,2,bytesReceived) != sf::Socket::Done)
         {
-		 error("ERROR reading from socket");
+		 //error("ERROR reading from socket");
+		 std::cout << "error reading" << std::endl;
 		}        
 		else
 		{
@@ -209,4 +212,5 @@ void communicationPC(Parametres p){
 
 	    sf::sleep(delai);
 	}
+}
 }

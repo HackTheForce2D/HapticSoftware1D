@@ -72,11 +72,22 @@ float Effector::updateTorque(float angle)
     if(torque > 1000) torque = 1000;
     else if(torque < -1000) torque = -1000;
     //physical->ApplyForce(force,physical->GetWorldCenter(),true);
+    //std::cout <<"Effector" << torque << std::endl;
     physical->ApplyTorque(torque,true);
     //return the reaction to the force as a QVector2D
     //to be used by the interface with the device
-    return (-torque/2);
-
+    collisions =  physical->GetContactList();
+    if(collisions == nullptr) return (0);
+    b2Contact * c = collisions->contact;
+    while(c != nullptr)
+    {
+       // if collisions->contact->IsTouching() return (-torque/2);
+        if(c->IsTouching()) return (-torque/2);
+        c = c->GetNext();
+    }
+    return(0);
+    //else if(collisions[0].contact->IsTouching() == false) return (0);
+    //else return (-torque/2);
 }
 
 sf::Vector2f Effector::convertPosition(b2Vec2 v)
