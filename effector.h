@@ -22,6 +22,7 @@ public:
     float updateTorque(float angle);
 private:
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+    b2ContactEdge * collisions;
     void resetGraphical();
     float kp,torqueFactor;
     float torque;

@@ -52,6 +52,14 @@ int main(int argc, char *argv[])
                      &physics,SLOT(createRigidBall(b2Vec2,float)));
     QObject::connect(&w,SIGNAL(ledState(bool)),
                      &simpleBar, SLOT(ledState(bool)));
+    QObject::connect(&w,SIGNAL(newOffset(int)),
+                     &simpleBar, SLOT(changeOffset(int)));
+    QObject::connect(&w,SIGNAL(disconnectDevice()),
+                     &simpleBar, SLOT(disconnect()));
+    QObject::connect(&simpleBar, SIGNAL(connected()),
+                     &w, SLOT(deviceConnected()));
+    QObject::connect(&simpleBar, SIGNAL(disconnected()),
+                     &w, SLOT(deviceDisconnected()));
 
 
     //pantograph.connectToHost("localhost",53200);
